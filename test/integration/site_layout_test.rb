@@ -1,9 +1,6 @@
 require 'test_helper'
 
 class SiteLayoutTest < ActionDispatch::IntegrationTest
-  # test "the truth" do
-  #   assert true
-  # end
   test "layout links" do
     get root_path
     assert_template 'static_pages/home'
@@ -13,7 +10,7 @@ class SiteLayoutTest < ActionDispatch::IntegrationTest
     assert_select "a[href=?]", contact_path
     assert_select "a[href=?]", signup_path
     get contact_path
-    # assert_select "title", full_title("Contact")
+    assert_select "title", full_title("Contact")
   end
 
 end

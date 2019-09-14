@@ -50,4 +50,18 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     assert_empty cookies[:remember_token]
   end
 
+  test "layout link" do
+    get root_path
+    assert_not is_logged_in?
+    assert_template 'static_pages/home'
+    assert_select "a[href=?]", login_path
+    assert_select "a[href=?]", help_path
+    assert_select "a[href=?]", about_path
+    get root_path
+    assert log_in_as(@user)
+    get root_path
+    assert_select "a[href=?]", logout_path
+    assert_select "a[href=?]", user_path(@user)
+  end
+
 end

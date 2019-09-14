@@ -16,7 +16,6 @@ require "minitest/reporters"
 Minitest::Reporters.use!
 
 class ActiveSupport::TestCase
-  # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
   fixtures :all
   include ApplicationHelper
 
@@ -31,7 +30,7 @@ end
 
 class ActionDispatch::IntegrationTest
 
-  # Log in as a particular user.
+
   def log_in_as(user, password: 'password', remember_me: '1')
     post login_path, params: { session: { email: user.email,
                                           password: password,

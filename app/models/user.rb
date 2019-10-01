@@ -77,8 +77,10 @@ class User < ApplicationRecord
   def feed
     following_ids = "SELECT followed_id FROM relationships
                     WHERE follower_id = :user_id"
+    #selectionne dans la table relationships les followed_id ou follower_id = id (current_user)
     Micropost.where("user_id IN (#{following_ids})
                       OR user_id = :user_id", user_id: id)
+    #ressort les microposts  ou le follower_id = id current user + user_id = current user
   end
 
   def follow(other_user)
